@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-volume-config
+  name: pod-config-vol
 spec:
   containers:
   - name: test-container
@@ -15,4 +15,3 @@ spec:
     - name: config-volume
       configMap:
         name: log-config
-  restartPolicy: Never

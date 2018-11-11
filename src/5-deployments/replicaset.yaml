@@ -1,8 +1,8 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: my-replicaset
-  namespace: lab-replicaset-and-deployment
+  namespace: lab-deployments
   labels:
     app: my-app
 spec:
@@ -27,7 +27,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-app
-  namespace: lab-replicaset-and-deployment
+  namespace: lab-deployments
 spec:
   selector:
     app: my-app

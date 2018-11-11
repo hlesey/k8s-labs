@@ -1,11 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
  name: monitoring
- namespace: lab-daemonset-and-job
  labels:
    k8s-app: get-hostname
 spec:
+  selector:
+    matchLabels:
+      name: monitoring
   template:
     metadata:
       labels:
