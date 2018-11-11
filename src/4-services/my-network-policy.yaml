@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: test-network-policy
-  namespace: lab-services-load-balancing-and-networking
+  namespace: lab-services
 spec:
   podSelector:
     matchLabels:

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-basic-pod
-  namespace: lab-services-load-balancing-and-networking
+  namespace: lab-services
   labels:
     app: my-app
 spec:

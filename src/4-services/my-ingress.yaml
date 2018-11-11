@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: my-ingress
-  namespace: lab-services-load-balancing-and-networking
+  namespace: lab-services
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
