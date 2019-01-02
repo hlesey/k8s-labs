@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         override.vm.hostname = hostname
         override.vm.provision "shell", path: "src/scripts/setup.sh"
         
-        override.vm.synced_folder "../", "/repo", id: "repo",
+        override.vm.synced_folder "../../../", "/repo", id: "repo",
         owner: "vagrant",
         group: "vagrant",
         mount_option: ["dmode=777,fmode=777"]
