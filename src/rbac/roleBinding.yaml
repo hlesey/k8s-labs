@@ -5,9 +5,9 @@ metadata:
   name: read-pods
 subjects:
 - kind: User
-  name: jane # Name is case sensitive
+  name: john # Name is case sensitive
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
-  name: pod-reader
+  name: deployment-manager
   apiGroup: rbac.authorization.k8s.io
