@@ -97,3 +97,51 @@ spec:
     server: nfsserver.local
     readOnly: false
   persistentVolumeReclaimPolicy: Recycle
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv07
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ssd
+  nfs:
+    path: /nfs/pv07
+    server: nfsserver.local
+    readOnly: false
+  persistentVolumeReclaimPolicy: Recycle
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv08
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  storageClassName: slow
+  nfs:
+    path: /nfs/pv08
+    server: nfsserver.local
+    readOnly: false
+  persistentVolumeReclaimPolicy: Recycle
+---
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv09
+spec:
+  capacity:
+    storage: 100Ki
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    path: /nfs/pv09
+    server: nfsserver.local
+    readOnly: false
+  persistentVolumeReclaimPolicy: Recycle
