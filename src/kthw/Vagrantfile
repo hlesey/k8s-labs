@@ -12,9 +12,9 @@ required_plugins.each do |plugin|
 end
 
   cluster = {
-    "controller-0" => { :ip => "10.240.0.10", :cpus => 1, :mem => 512 },
-    "controller-1" => { :ip => "10.240.0.11", :cpus => 1, :mem => 512 },
-    "controller-2" => { :ip => "10.240.0.12", :cpus => 1, :mem => 512 },
+    "controller-0" => { :ip => "10.240.0.10", :cpus => 1, :mem => 1024 },
+    "controller-1" => { :ip => "10.240.0.11", :cpus => 1, :mem => 1024 },
+    "controller-2" => { :ip => "10.240.0.12", :cpus => 1, :mem => 1024 },
 
     "worker-0"     => { :ip => "10.240.0.20", :cpus => 1, :mem => 512 },
     "worker-1"     => { :ip => "10.240.0.21", :cpus => 1, :mem => 512 },
