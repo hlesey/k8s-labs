@@ -16355,7 +16355,6 @@ spec:
       name: status-port
       port: 15020
       targetPort: 15020
-      nodePort: 31320
     -
       name: http2
       nodePort: 31380
@@ -16373,27 +16372,22 @@ spec:
       name: https-kiali
       port: 15029
       targetPort: 15029
-      nodePort: 31329
     -
       name: https-prometheus
       port: 15030
       targetPort: 15030
-      nodePort: 31330
     -
       name: https-grafana
       port: 15031
       targetPort: 15031
-      nodePort: 31331
     -
       name: https-tracing
       port: 15032
       targetPort: 15032
-      nodePort: 31332
     -
       name: tls
       port: 15443
       targetPort: 15443
-      nodePort: 31343
 ---
 
 ---
