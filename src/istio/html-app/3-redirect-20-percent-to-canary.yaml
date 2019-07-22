@@ -17,7 +17,7 @@ spec:
     route:
     - destination:
         host: html-app
-      weight: 90
+      weight: 80
     - destination:
         host: html-app-canary
-      weight: 10
+      weight: 20
