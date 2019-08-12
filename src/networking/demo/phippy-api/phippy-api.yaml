@@ -1,0 +1,48 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: phippy-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phippy-api 
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: phippy-api
+    spec:
+      containers:
+      - name: phippy-api
+        image: hlesey/phippy-api:1.0
+        ports:
+        - name: http-alt
+          containerPort: 8080
+        env:
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_HOST
+            value: "phippy-db"
+        resources:
+          requests:
+            cpu: "20m"
+            memory: "10Mi"
+        imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phippy-api
+spec:
+  selector:
+    app: phippy-api
+  ports:
+  - name: http
+    port: 80
+    targetPort: http-alt
