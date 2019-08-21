@@ -5,19 +5,23 @@ metadata:
   namespace: lab-pods
 spec:
   containers:
-  - name: debian-container
+  
+  - name: content-manager
     image: debian
     volumeMounts:
     - name: shared-data
       mountPath: /pod-data
     command: ["/bin/sh"]
     args: ["-c", "echo Hello from the debian container > /pod-data/index.html"]
-  - name: nginx-container
+
+  - name: consumer
     image: nginx
     volumeMounts:
     - name: shared-data
       mountPath: /usr/share/nginx/html
-  restartPolicy: Never
+  
   volumes:
   - name: shared-data
     emptyDir: {}
+
+  restartPolicy: Never
