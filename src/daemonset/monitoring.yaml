@@ -13,9 +13,6 @@ spec:
       labels:
         name: monitoring
     spec:
-      tolerations:
-        - effect: "NoSchedule"
-          operator: "Exists"
       containers:
       - name: nginx-container
         image: nginx:1.7.6
