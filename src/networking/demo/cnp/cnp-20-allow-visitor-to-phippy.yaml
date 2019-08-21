@@ -14,4 +14,6 @@ spec:
       rules:
         http:
         - method: GET
-          path: "/objects"
+          path: "/user/objects"
+        - method: GET
+          path: "/admin/objects"
