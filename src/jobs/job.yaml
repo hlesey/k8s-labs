@@ -7,8 +7,7 @@ spec:
     spec:
       containers:
       - name: pi
-        image: qedzone/alpine-curl 
-        # command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
-        command: [ "/usr/bin/curl", "-s", "http://ipecho.net/plain" ] 
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
       restartPolicy: Never
   backoffLimit: 4
