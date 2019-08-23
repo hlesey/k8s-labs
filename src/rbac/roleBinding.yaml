@@ -2,7 +2,7 @@
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: read-pods
+  name: deployment-manager
 subjects:
 - kind: User
   name: john # Name is case sensitive
