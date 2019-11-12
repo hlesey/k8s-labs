@@ -10,4 +10,3 @@ spec:
   - fromEndpoints:
     - matchLabels:
         app: phippy-admin
-    c 
