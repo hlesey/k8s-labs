@@ -30,7 +30,35 @@ spec:
             name: prometheus-server-conf
   
         - name: prometheus-storage-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: pvc-prom
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-prom
+  namespace: monitoring
+spec:
+  capacity:
+    storage: 1.1Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    path: /nfs/pv-prom
+    server: nfsserver.local
+  persistentVolumeReclaimPolicy: Recycle
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvc-prom
+    namespace: monitoring
+spec:
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+          storage: 1.1Gi
 ---
 apiVersion: v1
 kind: Service
