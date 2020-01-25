@@ -18,6 +18,10 @@ spec:
             - "--storage.tsdb.path=/prometheus/"
           ports:
             - containerPort: 9090
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "200Mi"
           volumeMounts:
             - name: prometheus-config-volume
               mountPath: /etc/prometheus/
@@ -28,7 +32,6 @@ spec:
           configMap:
             defaultMode: 420
             name: prometheus-server-conf
-  
         - name: prometheus-storage-volume
           persistentVolumeClaim:
             claimName: pvc-prom
@@ -40,7 +43,7 @@ metadata:
   namespace: monitoring
 spec:
   capacity:
-    storage: 1.1Gi
+    storage: 100Gi
   accessModes:
   - ReadWriteMany
   nfs:
@@ -58,7 +61,7 @@ spec:
       - ReadWriteMany
     resources:
       requests:
-          storage: 1.1Gi
+          storage: 100Gi
 ---
 apiVersion: v1
 kind: Service
