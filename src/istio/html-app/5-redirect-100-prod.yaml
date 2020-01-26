@@ -14,5 +14,9 @@ spec:
         - uri:
             exact: /version.html
       route:
-        - destination:
-            host: html-app
+      - destination:
+          host: html-app
+        weight: 100
+      - destination:
+          host: html-app-canary
+        weight: 0
