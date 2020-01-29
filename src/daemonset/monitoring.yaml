@@ -19,6 +19,7 @@ spec:
         volumeMounts:
         - name: shared-data
           mountPath: /usr/share/nginx/html/index.html
+          readOnly: true
       volumes:
       - name: shared-data
         hostPath:
