@@ -15,6 +15,10 @@ spec:
       containers:
       - name: hostnames
         image: k8s.gcr.io/serve_hostname
+        command: ["echo THIS LINE IS WRONG"]
+        resources:
+          limits:
+            memory: 4Mi
         ports:
         - containerPort: 9376
           protocol: TCP
