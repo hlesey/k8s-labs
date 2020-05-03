@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
 UBUNTU_BOX_IMAGE="ubuntu/bionic64"
-UBUNTU_BOX_VERSION="20200130.1.0"
+UBUNTU_BOX_VERSION="20200429.0.0"
 
 KUBERNETES_BOX_IMAGE="hlesey/k8s-base"
-KUBERNETES_BOX_VERSION="1.17.2"
+KUBERNETES_BOX_VERSION="1.18.2"
 
 # add ubuntu
 vagrant box add $UBUNTU_BOX_IMAGE --box-version $UBUNTU_BOX_VERSION --provider virtualbox
-
-# add centos
-#vagrant box add $CENTOS_BOX_IMAGE --box-version $CENTOS_BOX_VERSION --provider virtualbox
 
 # kubernetes
 vagrant box add $KUBERNETES_BOX_IMAGE --box-version $KUBERNETES_BOX_VERSION --provider virtualbox
