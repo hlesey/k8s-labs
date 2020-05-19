@@ -4,10 +4,8 @@ metadata:
   name: pod-config-vol
 spec:
   containers:
-  - name: test-container
-    image: busybox
-    command: ["/bin/sh", "-c", "--"]
-    args: ["while true; do sleep 30; done;"]
+  - name: nginx-container
+    image: nginx
     volumeMounts:
       - name: config-volume
         mountPath: /etc/config

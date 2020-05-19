@@ -5,9 +5,7 @@ metadata:
 spec:
   containers:
   - name: test-container
-    image: busybox
-    command: ["/bin/sh", "-c", "--"]
-    args: ["while true; do sleep 30; done;"]
+    image: nginx
     env:
     - name: LOG_LEVEL
       valueFrom:
