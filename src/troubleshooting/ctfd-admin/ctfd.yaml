@@ -1,0 +1,217 @@
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: ctfd-db
+  namespace: ctfd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctfd-db 
+  strategy:
+  template:
+    metadata:
+      labels:
+        app: ctfd-db 
+    spec:
+      containers:
+      - name: ctfd-db
+        image: hlesey/mariadb:10.4
+        args:
+        - mysqld
+        - --character-set-server=utf8mb4
+        - --collation-server=utf8mb4_unicode_ci
+        - --wait_timeout=28800
+        - --log-warnings=0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: ctfd
+        - name: MYSQL_USER
+          value: ctfd
+        - name: MYSQL_PASSWORD
+          value: ctfd
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "256Mi"
+        ports:
+        - name: ctfd-db
+          containerPort: 3306
+          protocol: TCP
+        volumeMounts:
+        - name:  data
+          mountPath:  "/var/lib/mysql"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: db-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ctfd-db
+  namespace: ctfd
+spec:
+  selector:
+    app: ctfd-db
+  ports:
+  - name: ctfd-db
+    port: 3306
+    targetPort: 3306
+    protocol: TCP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: db-claim
+  name: db-claim
+  namespace: ctfd
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: ctfd-cache
+  namespace: ctfd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctfd-cache
+  strategy:
+  template:
+    metadata:
+      labels:
+        app: ctfd-cache
+    spec:
+      containers:
+      - name: ctfd-cache
+        image: hlesey/redis:4
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 6379
+          protocol: TCP
+          name: ctfd-cache
+        volumeMounts:
+        - name:  data
+          mountPath:  "/data"
+      volumes:
+      - name: data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ctfd-cache
+  namespace: ctfd
+spec:
+  selector:
+    app: ctfd-cache
+  ports:
+  - name: ctfd-cache
+    port: 6379
+    targetPort: 6379
+    protocol: TCP
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: ctfd
+  namespace: ctfd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ctfd 
+  strategy:
+  template:
+    metadata:
+      labels:
+        app: ctfd 
+    spec:
+      containers:
+      - name: ctfd
+        image: hlesey/ctfd:latest
+        env:
+          - name: UPLOAD_FOLDER
+            value: "/var/uploads"
+          - name: DATABASE_URL
+            value: "mysql+pymysql://root:ctfd@ctfd-db/ctfd"
+          - name: REDIS_URL
+            value: "redis://ctfd-cache:6379"
+          - name: WORKERS
+            value: "1"
+          - name: LOG_FOLDER
+            value: "/var/log/CTFd"
+          - name: ACCESS_LOG
+            value: "-"
+          - name: ERROR_LOG
+            value: "-"        
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+          name: http
+        volumeMounts:
+        - name:  uploads
+          mountPath:  "/var/uploads"
+      volumes:
+      - name: uploads
+        persistentVolumeClaim:
+          claimName: ctfd-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: ctfd-claim
+  name: ctfd-claim
+  namespace: ctfd
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ctfd
+  namespace: ctfd
+spec:
+  selector:
+    app: ctfd
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ctfd
+  namespace: ctfd
+spec:
+  rules:
+  - host: ctfd.qedzone.ro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ctfd
+          servicePort: 80
