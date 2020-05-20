@@ -1,41 +1,41 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv00
+  name: pv10
 spec:
   capacity:
     storage: 1Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /nfs/pv00
+    path: /nfs/pv10
     server: nfsserver.local
   persistentVolumeReclaimPolicy: Recycle
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv01
+  name: pv11
 spec:
   capacity:
     storage: 1Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /nfs/pv01
+    path: /nfs/pv11
     server: nfsserver.local
   persistentVolumeReclaimPolicy: Recycle
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv02
+  name: pv12
 spec:
   capacity:
     storage: 1Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /nfs/pv02
+    path: /nfs/pv12
     server: nfsserver.local
   persistentVolumeReclaimPolicy: Recycle
