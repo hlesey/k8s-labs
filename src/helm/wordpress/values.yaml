@@ -1,0 +1,9 @@
+# use CluserIP service
+# enable Ingress
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  hostname: wordpress.local

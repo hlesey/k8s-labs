@@ -1,41 +1,41 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv00
+  name: pv20
 spec:
   capacity:
     storage: 8Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /nfs/pv00
+    path: /nfs/pv20
     server: nfsserver.local
   persistentVolumeReclaimPolicy: Recycle
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv01
+  name: pv21
 spec:
   capacity:
     storage: 8Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /nfs/pv01
+    path: /nfs/pv21
     server: nfsserver.local
   persistentVolumeReclaimPolicy: Recycle
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv02
+  name: pv22
 spec:
   capacity:
     storage: 8Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /nfs/pv02
+    path: /nfs/pv22
     server: nfsserver.local
   persistentVolumeReclaimPolicy: Recycle
