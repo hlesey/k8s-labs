@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: debug-container
+  name: toolbox
   namespace: default
 spec:
   replicas: 1
@@ -11,5 +11,5 @@ spec:
         app: debug
     spec:
       containers:
-      - name: debug-container
-        image: qedzone/debug-container
+      - name: toolbox
+        image: hlesey/toolbox
