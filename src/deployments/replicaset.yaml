@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: my-replicaset
-  namespace: lab-deployments
+  namespace: dev
   labels:
     app: my-app
 spec:
