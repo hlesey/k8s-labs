@@ -11,5 +11,5 @@ LC_ALL=en_US.utf-8
 EOF
 
 # configure /etc/hosts file
-echo "192.168.101.100   lab-master lab-master.local" >> /etc/hosts
-echo "192.168.101.101   lab-node01 lab-node01.local" >> /etc/hosts
+echo "192.168.235.100   lab-control-plane lab-control-plane.local" >> /etc/hosts
+echo "192.168.235.101   lab-node01 lab-node01.local" >> /etc/hosts
