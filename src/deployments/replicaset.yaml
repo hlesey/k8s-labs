@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: nginx
+        image: ghcr.io/hlesey/nginx:latest
         ports:
         - name: http
           containerPort: 80

@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: nginx-basic-pod
-    image: nginx
+    image: ghcr.io/hlesey/nginx:latest
     ports:
     - containerPort: 80
       name: http

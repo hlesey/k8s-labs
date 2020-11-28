@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: msg-path-demo-container
-    image: debian
+    image: ghcr.io/hlesey/debian:latest
     terminationMessagePath: "/tmp/my-log"
   restartPolicy: Never

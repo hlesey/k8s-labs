@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: test-container
-    image: nginx
+    image: ghcr.io/hlesey/nginx:latest
     env:
     - name: LOG_LEVEL
       valueFrom:

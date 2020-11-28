@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: nginx:1.17.10
+        image: ghcr.io/hlesey/nginx:1.17.10
         volumeMounts:
         - name: shared-data
           mountPath: /usr/share/nginx/html/index.html
