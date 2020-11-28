@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: ctfd-db
-        image: hlesey/mariadb:10.4
+        image: ghcr.io/hlesey/ghcr.io/hlesey/mariadb:10.4
         args:
         - mysqld
         - --character-set-server=utf8mb4
@@ -93,7 +93,7 @@ spec:
     spec:
       containers:
       - name: ctfd-cache
-        image: hlesey/redis:4
+        image: ghcr.io/hlesey/redis:4
         resources:
           requests:
             cpu: "300m"
@@ -141,7 +141,7 @@ spec:
     spec:
       containers:
       - name: ctfd
-        image: hlesey/ctfd:latest
+        image: ghcr.io/hlesey/ctfd:latest
         env:
           - name: UPLOAD_FOLDER
             value: "/var/uploads"

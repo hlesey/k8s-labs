@@ -38,9 +38,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         mount_option: ["dmode=777,fmode=777"]
 
         vb.name = hostname
-        vb.customize ["modifyvm", :id, "--memory", info[:mem], 
-                      "--cpus", info[:cpus], "--hwvirtex", "on", 
-                      "--ioapic", "on", "--uartmode1", "disconnected"]
+        vb.customize [
+          "modifyvm", :id, 
+          "--memory", info[:mem], 
+          "--cpus", info[:cpus],
+          "--ioapic", "on",
+          "--uartmode1", "file", File.join(Dir.pwd, hostname + "-console.log")
+        ]
       end # end provider
     end # end config
 

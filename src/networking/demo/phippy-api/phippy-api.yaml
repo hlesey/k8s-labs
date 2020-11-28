@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: phippy-api
-        image: hlesey/phippy-api:1.0
+        image: ghcr.io/hlesey/phippy-api:1.0
         ports:
         - name: http-alt
           containerPort: 8080

@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: nginx-container
-    image: nginx
+    image: ghcr.io/hlesey/nginx:latest
     volumeMounts:
       - name: config-volume
         mountPath: /etc/config

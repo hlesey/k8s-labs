@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: phippy
-        image: hlesey/phippy:2.0
+        image: ghcr.io/hlesey/phippy:2.0
         env:
           - name: FLASK_ENV
             value: development
