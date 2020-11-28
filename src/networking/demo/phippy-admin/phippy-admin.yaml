@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: proxy
-        image: hlesey/proxy:1.0
+        image: ghcr.io/hlesey/proxy:1.0
         envFrom:
         - configMapRef:
             name: phippy-admin

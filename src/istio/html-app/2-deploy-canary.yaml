@@ -18,7 +18,7 @@ spec:
         app: html-app-canary
     spec:
       containers:
-        - image: hlesey/html-app:2.0
+        - image: ghcr.io/hlesey/html-app:2.0
           name: html-app-canary
           ports:
             - containerPort: 80

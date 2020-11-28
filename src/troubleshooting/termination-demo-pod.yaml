@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: termination-demo-container
-    image: debian
+    image: ghcr.io/hlesey/debian:latest
     command: ["/bin/sh"]
     args: ["-c", "sleep 10 && echo Sleep expired > /dev/termination-log"]

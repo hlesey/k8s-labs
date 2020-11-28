@@ -31,7 +31,7 @@ spec:
         app: html-app
     spec:
       containers:
-        - image: hlesey/html-app:2.0
+        - image: ghcr.io/hlesey/html-app:2.0
           name: html-app
           ports:
             - containerPort: 80

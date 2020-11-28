@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: nginx:1.17.10
+      image: ghcr.io/hlesey/nginx:1.17.10
       ports:
         - name: http
           protocol: TCP

@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: html-app
-        image: hlesey/html-app:1.0
+        image: ghcr.io/hlesey/html-app:1.0
         resources:
           requests:
             cpu: "10m"

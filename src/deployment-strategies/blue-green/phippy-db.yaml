@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: hlesey/redis
+        image: ghcr.io/hlesey/redis:latest
         ports:
         - containerPort: 6379
           protocol: TCP

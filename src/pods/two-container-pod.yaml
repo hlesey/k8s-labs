@@ -7,7 +7,7 @@ spec:
   containers:
   
   - name: content-manager
-    image: debian
+    image: ghcr.io/hlesey/debian:latest
     volumeMounts:
     - name: shared-data
       mountPath: /pod-data
@@ -15,7 +15,7 @@ spec:
     args: ["-c", "echo Hello from the debian container > /pod-data/index.html"]
 
   - name: consumer
-    image: nginx
+    image: ghcr.io/hlesey/nginx:latest
     volumeMounts:
     - name: shared-data
       mountPath: /usr/share/nginx/html
