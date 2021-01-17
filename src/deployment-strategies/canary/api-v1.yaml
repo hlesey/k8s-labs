@@ -1,13 +1,13 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: phippy-v2
+  name: phippy-api-v1
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: phippy
-      version: v2.0
+      app: phippy-api
+      version: v1.0
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,15 +16,15 @@ spec:
   template:
     metadata:
       labels:
-        app: phippy
-        version: v2.0
+        app: phippy-api
+        version: v1.0
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "5000"
     spec:
       containers:
-      - name: phippy
-        image: ghcr.io/hlesey/phippy:2.0
+      - name: phippy-api
+        image: ghcr.io/hlesey/phippy-api:1.0
         env:
           - name: FLASK_ENV
             value: development

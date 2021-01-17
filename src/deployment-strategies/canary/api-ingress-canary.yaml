@@ -2,17 +2,17 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: phippy-canary
+  name: phippy-api-canary
   annotations:
     # Enable canary and send 10% of traffic to version 2
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-weight: "10"
 spec:
   rules:
-  - host: phippy.local
+  - host: phippy-api.local
     http:
       paths:
       - path: /
         backend:
-          serviceName: phippy-v2
+          serviceName: phippy-api-v2
           servicePort: 80
