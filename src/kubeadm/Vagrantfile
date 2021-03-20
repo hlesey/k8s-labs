@@ -14,7 +14,7 @@ end
 
 cluster = {
   "lab-control-plane" => { :ip => "192.168.235.100", :cpus => 4, :mem => 2048 },
-  "lab-node01" => { :ip => "192.168.235.101", :cpus => 2, :mem => 1024 },
+  "lab-node" => { :ip => "192.168.235.101", :cpus => 2, :mem => 1024 },
 }
  
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
