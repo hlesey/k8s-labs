@@ -1,0 +1,12 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: rbac-user
+  namespace: lab-rbac
+spec:
+  groups:
+  - system:authenticated
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
+  request: <csr-base64>
