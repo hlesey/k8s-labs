@@ -5,7 +5,7 @@ metadata:
   name: phippy-api
 spec:
   rules:
-  - host: phippy-api.local
+  - host: phippy-api.clusterX.qedzone.ro
     http:
       paths:
       - path: /
