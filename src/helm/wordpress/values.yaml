@@ -6,4 +6,4 @@ service:
 
 ingress:
   enabled: true
-  hostname: wordpress.clusterX.qedzone.ro
+  hostname: wordpress.clusterx.qedzone.ro
