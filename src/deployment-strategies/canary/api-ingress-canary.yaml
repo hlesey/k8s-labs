@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/canary-weight: "10"
 spec:
   rules:
-  - host: phippy-api.clusterX.qedzone.ro
+  - host: phippy-api.local
     http:
       paths:
       - path: /

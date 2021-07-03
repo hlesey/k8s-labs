@@ -56,7 +56,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-   - host: phippy-admin.clusterX.qedzone.ro
+   - host: phippy-admin.local
      http:
       paths:
       - path: /
