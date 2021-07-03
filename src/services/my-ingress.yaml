@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-   - host: myapp.clusterX.qedzone.ro
+   - host: myapp.clusterx.qedzone.ro
      http:
       paths:
       - path: /foo
