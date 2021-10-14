@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-deployment
+  name: prometheus-server
   namespace: monitoring
 spec:
   replicas: 1
@@ -26,23 +26,22 @@ spec:
               cpu: "200m"
               memory: "200Mi"
           volumeMounts:
-            - name: prometheus-config-volume
+            - name: prometheus-config
               mountPath: /etc/prometheus/
-            - name: prometheus-storage-volume
+            - name: prometheus-storage
               mountPath: /prometheus/
       volumes:
-        - name: prometheus-config-volume
+        - name: prometheus-config
           configMap:
-            defaultMode: 420
-            name: prometheus-server-conf
-        - name: prometheus-storage-volume
+            name: prometheus-config
+        - name: prometheus-storage
           persistentVolumeClaim:
-            claimName: pvc-prom
+            claimName: prometheus-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-prom
+  name: prometheus-pv
   namespace: monitoring
 spec:
   capacity:
@@ -57,19 +56,19 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: pvc-prom
-    namespace: monitoring
+  name: prometheus-pvc
+  namespace: monitoring
 spec:
-    accessModes:
-      - ReadWriteMany
-    resources:
-      requests:
-          storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-service
+  name: prometheus
   namespace: monitoring
   annotations:
       prometheus.io/scrape: 'true'
@@ -97,6 +96,6 @@ spec:
         pathType: "Prefix"
         backend:
           service:
-            name: prometheus-service
+            name: prometheus
             port:
               number: 9090
