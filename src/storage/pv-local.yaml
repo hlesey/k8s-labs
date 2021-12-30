@@ -1,7 +1,7 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-   name: local01
+   name: local001
    labels:
       type: local
 spec:
