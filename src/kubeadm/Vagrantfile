@@ -3,19 +3,21 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
-BOX_IMAGE="ubuntu/bionic64"
-BOX_VERSION="20210125.0.0"
+BOX_IMAGE="ubuntu/focal64"
+BOX_VERSION="20211026.0.0"
 
 required_plugins = %w(vagrant-vbguest)
 
-required_plugins.each do |plugin|
-  system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
-end
-
+# On latest versions of VirtualBox you have to manually allow IP addresses range in /etc/vbox/networks.conf
+# See https://www.virtualbox.org/manual/ch06.html#network_hostonly for more details
 cluster = {
   "lab-control-plane" => { :ip => "192.168.235.100", :cpus => 4, :mem => 2048 },
   "lab-node" => { :ip => "192.168.235.101", :cpus => 2, :mem => 1024 },
 }
+
+required_plugins.each do |plugin|
+  system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+end
  
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   cluster.each_with_index do |(hostname, info), index|

@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# remove swap
-# swapoff $(cat /etc/fstab | grep swap | cut -d ' ' -f1)
-# sed -e '/swap/ s/^#*/#/' -i /etc/fstab
-
 # supress console warnings
 cat <<EOF > /etc/environment
 LANG=en_US.utf-8
