@@ -73,9 +73,6 @@ kind: Service
 metadata:
   name: prometheus
   namespace: monitoring
-  # annotations:
-  #     prometheus.io/scrape: 'true'
-  #     prometheus.io/port:   '9090'
 spec:
   selector: 
     app: prometheus-server
@@ -88,9 +85,6 @@ kind: Ingress
 metadata:
   name: prometheus
   namespace: monitoring
-  annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: prometheus.clusterx.qedzone.ro

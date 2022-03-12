@@ -27,8 +27,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hostnames
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: hostnames.clusterx.qedzone.ro
