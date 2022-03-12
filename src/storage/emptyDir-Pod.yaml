@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: test-emptydir
-    image: ghcr.io/hlesey/nginx:latest
+    image: ghcr.io/hlesey/nginx:1.21.6
     volumeMounts:
     - mountPath: /cache
       name: cache-volume
