@@ -26,11 +26,9 @@ spec:
       - name: phippy-api
         image: ghcr.io/hlesey/phippy-api:2.0
         env:
-          - name: FLASK_ENV
-            value: development
-          - name: REDIS_HOST
+          - name: DB_HOST
             value: "phippy-db"
-          - name: REDIS_PORT
+          - name: DB_PORT
             value: "6379"
         resources:
           requests:
