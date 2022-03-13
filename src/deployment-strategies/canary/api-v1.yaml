@@ -6,8 +6,9 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: phippy-api
-      version: v1.0
+      app.kubernetes.io/name: phippy
+      app.kubernetes.io/component: api
+      app.kubernetes.io/version: v1.0
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,36 +17,32 @@ spec:
   template:
     metadata:
       labels:
-        app: phippy-api
-        version: v1.0
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "5000"
+        app.kubernetes.io/name: phippy
+        app.kubernetes.io/component: api
+        app.kubernetes.io/version: v1.0
     spec:
       containers:
       - name: phippy-api
         image: ghcr.io/hlesey/phippy-api:1.0
         env:
-          - name: DB_HOST
-            value: "phippy-db"
-          - name: DB_PORT
-            value: "6379"
+        - name: DB_HOST
+          value: "phippy-db"
+        - name: DB_PORT
+          value: "6379"
         resources:
+          limits:
+            memory: "100Mi"
           requests:
             cpu: "100m"
             memory: "100Mi"
         ports:
         - name: http
-          protocol: TCP
           containerPort: 5000
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /livezz
             port: http
-          initialDelaySeconds: 15
-          periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /readyz
             port: http
-          periodSeconds: 5
