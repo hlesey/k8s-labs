@@ -14,8 +14,6 @@ spec:
           containerPort: 5000
       env:
       - name: API_PORT
-        # value: "5000"
-        value: "80"
+        value: "5000"
       - name: API_HOST
-        # value: "10.0.X.X" # modify this with your phippy-api Pod IP
-        value: "phippy-api"
+        value: "10.0.X.X" # modify this with your phippy-api Pod IP

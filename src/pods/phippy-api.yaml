@@ -14,8 +14,7 @@ spec:
           containerPort: 5000
       env:
       - name: DB_HOST
-        # value: "10.0.X.X" # modify this with your phippy-db Pod IP
-        value: "phippy-db"
+        value: "10.0.X.X" # modify this with your phippy-db Pod IP
       livenessProbe:
         httpGet:
           path: /livez
