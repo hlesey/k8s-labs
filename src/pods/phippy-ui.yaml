@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: phippy-ui
+  labels:
+    app.kubernetes.io/name: phippy
+    app.kubernetes.io/component: ui
+spec:
+  containers:
+    - name: phippy-ui
+      image: ghcr.io/hlesey/phippy-ui:1.0
+      ports:
+        - name: http
+          containerPort: 5000
+      env:
+      - name: API_PORT
+        # value: "5000"
+        value: "80"
+      - name: API_HOST
+        # value: "10.0.X.X" # modify this with your phippy-api Pod IP
+        value: "phippy-api"
