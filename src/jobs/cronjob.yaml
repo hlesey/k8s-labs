@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: hello
-            image: ghcr.io/hlesey/busybox:latest
+            image: ghcr.io/hlesey/busybox:1.35.0
             args:
             - /bin/sh
             - -c

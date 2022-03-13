@@ -4,6 +4,6 @@ metadata:
   name: deployment-manager
   namespace: dev
 rules:
-  - apiGroups: ["", "apps", "extensions"] # "" indicates the core API group
+  - apiGroups: ["", "apps"] # "" indicates the core API group
     resources: ["deployments", "replicasets", "pods"]
     verbs: ["*"]

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: ghcr.io/hlesey/nginx:latest
+        image: ghcr.io/hlesey/nginx:1.21.6
         resources:
           requests:
             cpu: "100m"
