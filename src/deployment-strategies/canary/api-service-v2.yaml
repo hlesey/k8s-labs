@@ -4,10 +4,10 @@ metadata:
   name: phippy-api-v2
 spec:
   selector:
-    app: phippy-api
-    version: v2.0
+    app.kubernetes.io/name: phippy
+    app.kubernetes.io/component: api
+    app.kubernetes.io/version: v2.0
   ports:
   - name: http
     port: 80
     targetPort: 5000
-    protocol: TCP

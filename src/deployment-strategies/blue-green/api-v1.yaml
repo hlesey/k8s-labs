@@ -6,8 +6,9 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: phippy-api
-      version: v1.0
+      app.kubernetes.io/name: phippy
+      app.kubernetes.io/component: api
+      app.kubernetes.io/version: v1.0
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,8 +17,9 @@ spec:
   template:
     metadata:
       labels:
-        app: phippy-api
-        version: v1.0
+        app.kubernetes.io/name: phippy
+        app.kubernetes.io/component: api
+        app.kubernetes.io/version: v1.0
     spec:
       containers:
       - name: phippy-api
@@ -35,16 +37,12 @@ spec:
             memory: "100Mi"
         ports:
         - name: http
-          protocol: TCP
           containerPort: 5000
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /livez
             port: http
-          initialDelaySeconds: 15
-          periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /readyz
             port: http
-          periodSeconds: 5

@@ -6,11 +6,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: phippy-db
+      app.kubernetes.io/name: phippy
+      app.kubernetes.io/component: db
   template:
     metadata:
       labels:
-        app: phippy-db
+        app.kubernetes.io/name: phippy
+        app.kubernetes.io/component: db
     spec:
       containers:
       - name: redis
@@ -25,7 +27,8 @@ metadata:
   name: phippy-db
 spec:
   selector:
-    app: phippy-db
+    app.kubernetes.io/name: phippy
+    app.kubernetes.io/component: db
   ports:
   - name: redis
     port: 6379
