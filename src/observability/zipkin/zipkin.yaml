@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: zipkin-service
+  name: zipkin
   namespace: tracing
 spec:
   type: ClusterIP
@@ -33,3 +33,21 @@ spec:
   - name: zipkin
     port: 9411
     targetPort: zipkin
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zipkin
+  namespace: tracing
+spec:
+  rules:
+  - host: zipkin.clusterx.qedzone.ro
+    http:
+      paths:
+      - path: /
+        pathType: "Prefix"
+        backend:
+          service:
+            name: zipkin
+            port:
+              number: 9411
