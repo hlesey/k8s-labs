@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: phippy-api
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: phippy
@@ -31,8 +31,8 @@ spec:
           containerPort: 5000
         readinessProbe:
           httpGet:
-            path: /readyz
-            port: https
+            path: /readyzz
+            port: http
 ---
 apiVersion: v1
 kind: Service
