@@ -15,7 +15,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: ghcr.io/hlesey/nginx:1.21.6
+      - image: ghcr.io/hlesey/nginx:1.25.3
         name: nginx
         resources:
           requests:
