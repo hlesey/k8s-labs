@@ -5,3 +5,4 @@ k8s.gcr.io
 # image templates
 {{
 <FIXME>
+registry.k8s.io
