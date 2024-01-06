@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: phippy
-        image: ghcr.io/hlesey/phippy-api:<THIS VERSION LINE IS WRONG>
+        image: ghcr.io/hlesey/phippy-api:<WRONG VERSION>
         env:
         - name: DB_PORT
           value: "6379"
