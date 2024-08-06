@@ -130,7 +130,6 @@ spec:
     readOnly: false
   persistentVolumeReclaimPolicy: Recycle
 ---
----
 apiVersion: v1
 kind: PersistentVolume
 metadata:
