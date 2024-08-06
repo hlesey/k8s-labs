@@ -2,12 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: phippy-ui
-  namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: phippy.cluster0.qedzone.ro
+  - host: phippy.clusterx.qedzone.ro
     http:
       paths:
       - path: /
