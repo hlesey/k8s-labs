@@ -6,7 +6,7 @@ spec:
   containers:
   
   - name: content-manager
-    image: ghcr.io/hlesey/debian:stable-20231218
+    image: ghcr.io/hlesey/debian:stable-20240812-slim
     volumeMounts:
     - name: shared-data
       mountPath: /pod-data

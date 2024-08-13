@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: pi
-        image: ghcr.io/hlesey/perl:5.38.2-slim
+        image: ghcr.io/hlesey/perl:5.40-slim
         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
       restartPolicy: Never
   backoffLimit: 4

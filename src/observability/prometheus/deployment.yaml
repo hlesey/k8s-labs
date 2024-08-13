@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: prometheus
-          image: ghcr.io/hlesey/prom/prometheus:v2.48.1
+          image: ghcr.io/hlesey/prom/prometheus:v2.54.0
           args:
             - "--config.file=/etc/prometheus/prometheus.yml"
             - "--storage.tsdb.path=/prometheus/"
