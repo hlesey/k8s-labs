@@ -10,7 +10,7 @@ spec:
   nfs:
     path: /nfs/pv20
     server: nfsserver.local
-  persistentVolumeReclaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Delete
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -24,7 +24,7 @@ spec:
   nfs:
     path: /nfs/pv21
     server: nfsserver.local
-  persistentVolumeReclaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Delete
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -38,4 +38,4 @@ spec:
   nfs:
     path: /nfs/pv22
     server: nfsserver.local
-  persistentVolumeReclaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Delete

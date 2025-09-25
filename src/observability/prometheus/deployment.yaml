@@ -54,7 +54,7 @@ spec:
   nfs:
     path: /nfs/pv-prom
     server: nfsserver.local
-  persistentVolumeReclaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Delete
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
