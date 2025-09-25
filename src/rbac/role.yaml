@@ -1,8 +1,12 @@
-kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
-  name: deployment-manager
+ namespace: dev
+ name: deployment-manager
 rules:
-  - apiGroups: ["", "apps"] # "" indicates the core API group
-    resources: ["deployments", "replicasets", "pods"]
-    verbs: ["*"]
+- apiGroups: ["","apps"]
+  resources: ["deployments", "replicasets", "pods"]
+  verbs: ["*"]
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create"]

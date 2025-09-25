@@ -11,6 +11,11 @@ spec:
       labels:
         name: monitoring
     spec:
+      nodeSelector:
+        gpu: "true"
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
       containers:
       - name: nginx-container
         image: ghcr.io/hlesey/nginx:1.27
