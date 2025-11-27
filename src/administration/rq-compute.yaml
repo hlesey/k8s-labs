@@ -4,7 +4,7 @@ metadata:
   name: rq-compute
 spec:
   hard:
-    count/pods: "10"
+    count/pods: "2"
     requests.cpu: "1"
     requests.memory: 1Gi
     limits.cpu: "2"
