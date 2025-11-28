@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: phippy
-        image: ghcr.io/hlesey/phippy-api:1.0
+        image: ghcr.io/hlesey/phippy-api:<WRONG VERSION>
         env:
         - name: DB_PORT
           value: "6379"
@@ -25,13 +25,13 @@ spec:
           value: "phippy-db"
         resources:
           limits:
-            memory: 100Mi
+            memory: 4Mi
         ports:
         - name: http
           containerPort: 5000
         readinessProbe:
           httpGet:
-            path: /readyz
+            path: /readyzz
             port: http
 ---
 apiVersion: v1
@@ -41,11 +41,11 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: phippy
-    app.kubernetes.io/component: api
+    app.kubernetes.io/compnoent: api
   ports:
   - name: http
     port: 80
-    targetPort: 5000
+    targetPort: 5001
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -60,6 +60,6 @@ spec:
         pathType: "Prefix"
         backend:
           service:
-            name: phippy-api
+            name: phippy-db
             port:
-              name: http
+              name: https
