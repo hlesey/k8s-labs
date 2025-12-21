@@ -2,17 +2,21 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name:  phippy-ui
+  name:  phippy-api
 spec:
   parentRefs:
   - name: eg
     namespace: envoy-gateway
   hostnames:
-  - phippy.clusterx.qedzone.ro
+  - phippy-api.clusterx.qedzone.ro
   rules:
   - backendRefs:
-    - name: phippy-ui
+    - name: phippy-api-v1
       port: 80
+    #   weight: 90
+    # - name: phippy-api-v2
+    #   port: 80
+    #   weight: 10
     matches:
     - path:
         type: PathPrefix
