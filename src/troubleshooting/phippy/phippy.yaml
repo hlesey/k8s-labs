@@ -53,15 +53,15 @@ metadata:
   name: phippy-api
 spec:
   parentRefs:
-  - name: eg
+  - name: envoy-gateway
     namespace: envoy-gateway
   hostnames:
   - phippy-api.clusterx.qedzone.ro
   rules:
-  - backendRefs:
-    - name: phippy-db
-      port: 443
-    matches:
+  - matches:
     - path:
         type: PathPrefix
         value: /
+    backendRefs:
+    - name: phippy-db
+      port: 443

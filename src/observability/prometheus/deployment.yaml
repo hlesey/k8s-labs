@@ -87,15 +87,15 @@ metadata:
   namespace: monitoring
 spec:
   parentRefs:
-  - name: eg
+  - name: envoy-gateway
     namespace: envoy-gateway
   hostnames:
   - prometheus.clusterx.qedzone.ro
   rules:
-  - backendRefs:
-    - name: prometheus
-      port: 9090
-    matches:
+  - matches:
     - path:
         type: PathPrefix
         value: /
+    backendRefs:
+    - name: prometheus
+      port: 9090

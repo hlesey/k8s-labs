@@ -5,19 +5,20 @@ metadata:
   name:  phippy-api
 spec:
   parentRefs:
-  - name: eg
+  - name: envoy-gateway
     namespace: envoy-gateway
   hostnames:
   - phippy-api.clusterx.qedzone.ro
   rules:
-  - backendRefs:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
     - name: phippy-api-v1
       port: 80
     #   weight: 90
     # - name: phippy-api-v2
     #   port: 80
     #   weight: 10
-    matches:
-    - path:
-        type: PathPrefix
-        value: /
+     

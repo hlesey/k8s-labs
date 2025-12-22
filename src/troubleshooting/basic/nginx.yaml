@@ -35,15 +35,15 @@ metadata:
   name: nginx
 spec:
   parentRefs:
-  - name: eg
+  - name: envoy-gateway
     namespace: envoy-gateway
   hostnames:
   - nginx.clusterx.qedzone.ro
   rules:
-  - backendRefs:
-    - name: nginx
-      port: 80
-    matches:
+  - matches:
     - path:
         type: PathPrefix
         value: /
+    backendRefs:
+    - name: nginx
+      port: 80
