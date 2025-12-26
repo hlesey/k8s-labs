@@ -1,8 +1,9 @@
 ---
+# Subdomain access: phippy.clusterxqedzone.ro/
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: phippy-ui
+  name: phippy-ui-subdomain
 spec:
   parentRefs:
   - name: envoy-gateway
@@ -14,6 +15,32 @@ spec:
     - path:
         type: PathPrefix
         value: /
+    backendRefs:
+    - name: phippy-ui
+      port: 80
+---
+# Path-based access: clusterx.qedzone.ro/phippy
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: phippy-ui-path
+spec:
+  parentRefs:
+  - name: envoy-gateway
+    namespace: envoy-gateway
+  hostnames:
+  - clusterx.qedzone.ro
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /phippy
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
     backendRefs:
     - name: phippy-ui
       port: 80
