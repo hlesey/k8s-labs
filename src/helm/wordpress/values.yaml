@@ -10,4 +10,4 @@ httpRoute:
     - name: envoy-gateway
       namespace: envoy-gateway
   hostnames:
-    - wordpress.clusterX.qedzone.ro
+    - wordpress.clusterx.qedzone.ro
