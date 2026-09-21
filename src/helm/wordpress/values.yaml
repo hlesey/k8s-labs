@@ -4,6 +4,10 @@
 service:
   type: ClusterIP
 
-ingress:
+httpRoute:
   enabled: true
-  hostname: wordpress.clusterx.qedzone.ro
+  parentRefs:
+    - name: envoy-gateway
+      namespace: envoy-gateway
+  hostnames:
+    - wordpress.clusterx.qedzone.ro
