@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    vim \
+    net-tools \
+    telnet \
+    python3
+
+COPY app.py /app/app.py
+
+EXPOSE 8080
+
+CMD ["python3", "/app/app.py"]
