@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supply-demo
+  namespace: lab-supply-chain
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: supply-demo
+  template:
+    metadata:
+      labels:
+        app: supply-demo
+    spec:
+      containers:
+      - name: app
+        image: registry.k8s.io/pause:3.10
+        resources:
+          requests:
+            cpu: 10m
+            memory: 16Mi
+          limits:
+            cpu: 100m
+            memory: 64Mi
