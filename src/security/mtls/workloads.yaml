@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc-server
+  namespace: lab-mtls
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-server
+  template:
+    metadata:
+      labels:
+        app: svc-server
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27-alpine
+        ports:
+        - containerPort: 443
+        volumeMounts:
+        - {name: config, mountPath: /etc/nginx/conf.d, readOnly: true}
+        - {name: tls, mountPath: /etc/nginx/tls, readOnly: true}
+        - {name: ca, mountPath: /etc/nginx/ca, readOnly: true}
+      volumes:
+      - name: config
+        configMap:
+          name: mtls-nginx
+      - name: tls
+        secret:
+          secretName: mtls-server
+      - name: ca
+        secret:
+          secretName: mtls-ca
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-server
+  namespace: lab-mtls
+spec:
+  selector:
+    app: svc-server
+  ports:
+  - port: 443
+    targetPort: 443
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: svc-client
+  namespace: lab-mtls
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl:8.12.1
+    command: ["sleep", "3600"]
+    volumeMounts:
+    - {name: client, mountPath: /certs/client, readOnly: true}
+    - {name: ca, mountPath: /certs/ca, readOnly: true}
+  volumes:
+  - name: client
+    secret:
+      secretName: mtls-client
+  - name: ca
+    secret:
+      secretName: mtls-ca

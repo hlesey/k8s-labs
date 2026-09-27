@@ -3,7 +3,7 @@ kind: Policy
 omitStages:
   - "RequestReceived"
 rules:
-  - level: RequestResponse
+  - level: Metadata
     resources:
     - group: ""
       resources: ["pods"]
