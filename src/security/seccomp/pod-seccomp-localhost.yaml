@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: seccomp-localhost
+  namespace: lab-hardening
+spec:
+  nodeName: <worker-node-name>
+  securityContext:
+    seccompProfile:
+      type: Localhost
+      localhostProfile: profiles/deny-mkdir.json
+  containers:
+  - name: app
+    image: busybox:1.36
+    command: ["sh", "-c", "sleep 1h"]

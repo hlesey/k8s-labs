@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suspect
+  namespace: lab-runtime
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: suspect}
+  template:
+    metadata:
+      labels: {app: suspect}
+    spec:
+      containers:
+      - name: app
+        image: alpine:3.20
+        command: ["sh", "-c", "while true; do cat /etc/shadow > /dev/null; wget -q -T 2 -O /dev/null http://example.com || true; sleep 15; done"]
