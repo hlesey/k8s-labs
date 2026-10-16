@@ -1,0 +1,25 @@
+# Concept only: Kyverno is not installed on the lab cluster
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-signed-images
+spec:
+  webhookTimeoutSeconds: 30
+  rules:
+  - name: verify-cosign
+    match:
+      any:
+      - resources:
+          kinds: [Pod]
+          namespaceSelector:
+            matchLabels:
+              security-lab: admission
+    verifyImages:
+    - imageReferences: ["<registry>/<cont>/*"]
+      failureAction: Enforce
+      mutateDigest: true
+      attestors:
+      - entries:
+        - keys:
+            publicKeys: |-
+              <continutul cosign.pub>
