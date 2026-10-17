@@ -1,0 +1,13 @@
+# Slide: Cluster Hardening 3.2
+apiVersion: v1
+kind: Pod
+metadata:
+  name: seccomp-runtime-default
+spec:
+  securityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sh", "-c", "sleep 1h"]

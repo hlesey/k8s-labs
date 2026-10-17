@@ -1,0 +1,25 @@
+# Slide: Pod Security Standards 3.1 - nginx also needs a writable /run (nginx.pid)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: immutable-pod
+spec:
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/nginx:1.25.3
+    securityContext:
+      readOnlyRootFilesystem: true
+    volumeMounts:
+    - name: tmp
+      mountPath: /tmp
+    - name: cache
+      mountPath: /var/cache/nginx
+    - name: run
+      mountPath: /run
+  volumes:
+  - name: tmp
+    emptyDir: {}
+  - name: cache
+    emptyDir: {}
+  - name: run
+    emptyDir: {}

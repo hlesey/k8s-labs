@@ -1,0 +1,26 @@
+# Slide: Pod Security Standards 2.1 - the slide omits seccompProfile, which restricted requires
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restricted-pod
+spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sh", "-c", "sleep 1h"]
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      readOnlyRootFilesystem: true
+    volumeMounts:
+    - name: tmp
+      mountPath: /tmp
+  volumes:
+  - name: tmp
+    emptyDir: {}

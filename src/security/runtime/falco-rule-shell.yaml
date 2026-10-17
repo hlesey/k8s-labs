@@ -1,0 +1,13 @@
+# Slide: Runtime Security 3.2 - example rule, renamed so it does not clash with the
+# default "Terminal shell in container" rule. On CRI-O + crun the default rule also
+# needs the container_entrypoint override from falco-lab-values.yaml.
+- rule: Lab terminal shell in container
+  desc: Detect a shell in a container
+  condition: >
+    spawned_process and container and
+    proc.name in (bash, sh, zsh)
+  output: >
+    Shell opened in container
+    (user=%user.name container=%container.name
+     shell=%proc.name)
+  priority: WARNING

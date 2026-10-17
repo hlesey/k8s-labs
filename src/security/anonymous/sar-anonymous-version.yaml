@@ -1,0 +1,6 @@
+apiVersion: authorization.k8s.io/v1
+kind: SubjectAccessReview
+spec:
+  user: system:anonymous
+  groups: ["system:unauthenticated"]
+  nonResourceAttributes: {verb: get, path: /version}
