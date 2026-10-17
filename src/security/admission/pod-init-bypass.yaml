@@ -5,6 +5,6 @@ metadata:
   namespace: lab-admission
 spec:
   initContainers:
-  - {name: init, image: "busybox:1.36", command: ["true"]}
+  - {name: init, image: "ghcr.io/hlesey/busybox:1.36.1", command: ["true"]}
   containers:
   - {name: app, image: "registry.k8s.io/pause:3.10"}

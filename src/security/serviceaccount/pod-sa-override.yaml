@@ -8,5 +8,5 @@ spec:
   automountServiceAccountToken: true
   containers:
   - name: app
-    image: busybox:1.36
+    image: ghcr.io/hlesey/busybox:1.36.1
     command: ["sleep", "3600"]
