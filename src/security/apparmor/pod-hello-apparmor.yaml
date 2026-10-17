@@ -10,5 +10,5 @@ spec:
       localhostProfile: k8s-apparmor-example-deny-write
   containers:
   - name: hello
-    image: busybox:1.36
+    image: ghcr.io/hlesey/busybox:1.36.1
     command: ["sh", "-c", "echo 'Hello AppArmor!' && sleep 1h"]

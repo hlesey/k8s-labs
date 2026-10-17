@@ -13,5 +13,5 @@ spec:
     spec:
       containers:
       - name: app
-        image: alpine:3.20
+        image: ghcr.io/hlesey/alpine:3.20
         command: ["sh", "-c", "while true; do cat /etc/shadow > /dev/null; wget -q -T 2 -O /dev/null http://example.com || true; sleep 15; done"]
