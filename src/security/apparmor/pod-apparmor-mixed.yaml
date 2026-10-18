@@ -4,7 +4,8 @@ metadata:
   name: apparmor-mixed
   namespace: lab-hardening
 spec:
-  nodeName: <worker-node-name>
+  nodeSelector:
+    "node-role.kubernetes.io/node01" : ""
   containers:
   - name: locked
     image: ghcr.io/hlesey/busybox:1.36.1
