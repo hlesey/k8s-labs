@@ -8,7 +8,7 @@ automountServiceAccountToken: false
 apiVersion: v1
 kind: Pod
 metadata:
-  name: sa-none
+  name: sa-none-pod
   namespace: lab-hardening
 spec:
   serviceAccountName: no-token

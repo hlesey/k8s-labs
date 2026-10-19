@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: seccomp-pod
+  name: seccomp-none
+  namespace: lab-hardening
 spec:
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
+  nodeSelector:
+    "node-role.kubernetes.io/node01" : ""
   containers:
   - name: app
     image: ghcr.io/hlesey/busybox:1.36.1

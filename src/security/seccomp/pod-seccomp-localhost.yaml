@@ -4,7 +4,8 @@ metadata:
   name: seccomp-localhost
   namespace: lab-hardening
 spec:
-  nodeName: <worker-node-name>
+  nodeSelector:
+    "node-role.kubernetes.io/node01" : ""
   securityContext:
     seccompProfile:
       type: Localhost
