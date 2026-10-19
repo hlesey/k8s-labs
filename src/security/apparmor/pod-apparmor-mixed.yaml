@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: apparmor-mixed
+  name: apparmor-pod
   namespace: lab-hardening
 spec:
   nodeSelector:
