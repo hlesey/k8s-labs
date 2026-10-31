@@ -1,0 +1,12 @@
+# Lab: Admission Controllers, Part 1 - copy to /etc/kubernetes/epconfig/ on the master
+apiVersion: apiserver.config.k8s.io/v1
+kind: AdmissionConfiguration
+plugins:
+- name: ImagePolicyWebhook
+  configuration:
+    imagePolicy:
+      kubeConfigFile: /etc/kubernetes/epconfig/kubeconf   # path inside the API server container
+      allowTTL: 50
+      denyTTL: 50
+      retryBackoff: 500
+      defaultAllow: false   # backend unreachable -> every new Pod is rejected (fail-closed)
