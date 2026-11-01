@@ -1,0 +1,23 @@
+# Demo (Cluster Hardening 5.5): the same Pod without a seccomp profile and with RuntimeDefault
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-none
+spec:
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sleep", "3600"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-default
+spec:
+  securityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sleep", "3600"]

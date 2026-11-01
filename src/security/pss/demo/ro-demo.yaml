@@ -1,0 +1,13 @@
+# Demo (Pod Security Standards 6.1): read-only root filesystem, but the app writes to /tmp
+# -> "Read-only file system" in the logs. Fixed version: ro-demo-fixed.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ro-demo
+spec:
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sh", "-c", "date > /tmp/started && sleep 3600"]
+    securityContext:
+      readOnlyRootFilesystem: true

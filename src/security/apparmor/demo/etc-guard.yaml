@@ -1,0 +1,17 @@
+# Demo (Cluster Hardening 5.3): Pod confined by the k8s-deny-etc-write profile.
+# The profile is loaded only on node01, so the Pod is pinned there.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etc-guard
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/node01: ""
+  securityContext:
+    appArmorProfile:
+      type: Localhost
+      localhostProfile: k8s-deny-etc-write
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sleep", "3600"]

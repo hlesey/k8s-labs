@@ -1,0 +1,50 @@
+# Lab: Admission Controllers, Part 2 j) - lab-no-latest extended to Deployments.
+# Replaces no-latest-policy.yaml (same policy and Binding names).
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: lab-no-latest
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+    - apiGroups: [""]
+      apiVersions: ["v1"]
+      operations: ["CREATE", "UPDATE"]
+      resources: ["pods"]
+    - apiGroups: ["apps"]
+      apiVersions: ["v1"]
+      operations: ["CREATE", "UPDATE"]
+      resources: ["deployments"]   # immediate error on kubectl create/apply/set image, not a FailedCreate event
+  variables:
+  # A Pod has the containers in spec, a Deployment in spec.template.spec.
+  # Using object.spec.containers for a Deployment fails with "no such key: containers",
+  # and with failurePolicy: Fail every Deployment is rejected, even with a good image.
+  - name: podSpec
+    expression: "object.kind == 'Pod' ? object.spec : object.spec.template.spec"
+  # initContainers too: otherwise an init container with :latest bypasses the policy
+  - name: allContainers
+    expression: >-
+      variables.podSpec.containers +
+      (has(variables.podSpec.initContainers) ? variables.podSpec.initContainers : [])
+  - name: badContainers
+    expression: >-
+      variables.allContainers.filter(c,
+        !c.image.contains('@sha256:') &&
+        (!c.image.substring(c.image.lastIndexOf('/') + 1).contains(':') ||
+          c.image.endsWith(':latest')))
+  validations:
+  - expression: "size(variables.badContainers) == 0"
+    messageExpression: "object.kind + ' ' + object.metadata.name + ': tag mutabil (latest sau lipsa) in containerele: ' + variables.badContainers.map(c, c.name).join(', ')"
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: lab-no-latest-binding
+spec:
+  policyName: lab-no-latest
+  validationActions: [Deny]
+  matchResources:
+    namespaceSelector:
+      matchLabels:
+        security-lab: admission
