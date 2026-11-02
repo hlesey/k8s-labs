@@ -1,0 +1,12 @@
+# Demo (Pod Security Standards 3.2): host network namespace -> rejected by baseline
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostnet
+  namespace: psa-demo
+spec:
+  hostNetwork: true
+  containers:
+  - name: app
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sleep", "3600"]

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: sa-override
+  name: sa-override-pod
   namespace: lab-hardening
 spec:
   serviceAccountName: no-token

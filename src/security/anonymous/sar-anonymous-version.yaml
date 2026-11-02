@@ -1,3 +1,4 @@
+# Run with: kubectl create -f sar-anonymous-version.yaml -o yaml   (not apply: a SubjectAccessReview has no name and is not stored)
 apiVersion: authorization.k8s.io/v1
 kind: SubjectAccessReview
 spec:

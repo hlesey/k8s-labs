@@ -1,0 +1,15 @@
+# Demo (Cluster Hardening 1.3): a namespace with one Pod, to be listed anonymously
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: anon-demo
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  namespace: anon-demo
+spec:
+  containers:
+  - name: web
+    image: registry.k8s.io/pause:3.10

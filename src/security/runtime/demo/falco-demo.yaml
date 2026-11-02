@@ -1,0 +1,16 @@
+# Demo (Runtime Security 4.3): a busybox Pod used to trigger a default Falco rule
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: falco-demo
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: box
+  namespace: falco-demo
+spec:
+  containers:
+  - name: box
+    image: ghcr.io/hlesey/busybox:1.36.1
+    command: ["sleep", "3600"]
