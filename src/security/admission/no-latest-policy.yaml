@@ -11,9 +11,14 @@ spec:
       operations: ["CREATE", "UPDATE"]
       resources: ["pods"]
   variables:
+  # initContainers too: otherwise an init container with :latest bypasses the policy
+  - name: allContainers
+    expression: >-
+      object.spec.containers +
+      (has(object.spec.initContainers) ? object.spec.initContainers : [])
   - name: badContainers
     expression: >-
-      object.spec.containers.filter(c,
+      variables.allContainers.filter(c,
         !c.image.contains('@sha256:') &&
         (!c.image.substring(c.image.lastIndexOf('/') + 1).contains(':') ||
           c.image.endsWith(':latest')))

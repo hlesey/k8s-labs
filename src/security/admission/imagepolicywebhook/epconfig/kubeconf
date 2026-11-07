@@ -1,0 +1,18 @@
+# Lab: Admission Controllers, Part 1 - kubeconfig of the ImagePolicyWebhook backend.
+# Nothing listens on 127.0.0.1:1234: the lab shows what happens when the backend is down.
+apiVersion: v1
+kind: Config
+clusters:
+- name: image-checker
+  cluster:
+    server: https://127.0.0.1:1234/image_policy
+    insecure-skip-tls-verify: true   # lab only; in production: certificate-authority
+contexts:
+- name: image-checker
+  context:
+    cluster: image-checker
+    user: api-server
+current-context: image-checker
+users:
+- name: api-server
+  user: {}                           # in production: client-certificate / client-key

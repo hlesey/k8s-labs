@@ -1,0 +1,7 @@
+# Demo (Admission Controllers 4.2): the namespace selected by require-team-binding
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vap-demo
+  labels:
+    policy-demo: "on"

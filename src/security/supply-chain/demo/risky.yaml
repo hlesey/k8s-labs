@@ -1,0 +1,12 @@
+# Demo (Supply Chain Security 3.2): a Pod for kube-linter, kubesec and trivy config
+apiVersion: v1
+kind: Pod
+metadata:
+  name: risky
+spec:
+  hostPID: true
+  containers:
+  - name: tools
+    image: ghcr.io/hlesey/busybox:1.36.1
+    securityContext:
+      privileged: true
