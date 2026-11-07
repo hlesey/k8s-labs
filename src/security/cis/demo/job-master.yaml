@@ -32,7 +32,7 @@ spec:
           effect: NoSchedule
       containers:
         - name: kube-bench
-          image: docker.io/aquasec/kube-bench:v0.16.0
+          image: ghcr.io/hlesey/aquasec/kube-bench:v0.16.0
           command: ["kube-bench", "run", "--targets", "master", "--benchmark", "cis-1.12"]
           volumeMounts:
             - name: var-lib-cni
