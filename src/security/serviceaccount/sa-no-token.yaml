@@ -14,5 +14,4 @@ spec:
   serviceAccountName: no-token
   containers:
   - name: app
-    image: ghcr.io/hlesey/busybox:1.36.1
-    command: ["sleep", "3600"]
+    image: ghcr.io/hlesey/toolbox:1.0
