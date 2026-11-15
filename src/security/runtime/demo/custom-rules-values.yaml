@@ -1,0 +1,16 @@
+customRules:
+  rules-custom.yaml: |-
+    - list: pkg_mgmt_binaries
+      items: [apk, apt, apt-get, dpkg, yum, dnf, pip, npm]
+
+    - rule: Package manager run in container
+      desc: Immutable containers never install software
+      condition: >
+        spawned_process and container
+        and proc.name in (pkg_mgmt_binaries)
+      output: >
+        Package manager in container (user=%user.name
+        cmd=%proc.cmdline ns=%k8s.ns.name
+        pod=%k8s.pod.name image=%container.image.repository)
+      priority: WARNING
+      tags: [container, mitre_persistence]
