@@ -1,5 +1,3 @@
-# Demo (Cluster Hardening 5.3): Pod confined by the k8s-deny-etc-write profile.
-# The profile is loaded only on node01, so the Pod is pinned there.
 apiVersion: v1
 kind: Pod
 metadata:

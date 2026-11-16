@@ -1,4 +1,3 @@
-# Demo (Supply Chain Security 3.2): a Pod for kube-linter, kubesec and trivy config
 apiVersion: v1
 kind: Pod
 metadata:

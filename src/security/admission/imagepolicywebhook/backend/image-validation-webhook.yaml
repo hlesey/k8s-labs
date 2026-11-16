@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: image-policy
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-validation-webhook
+  namespace: image-policy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-validation-webhook
+  template:
+    metadata:
+      labels:
+        app: image-validation-webhook
+    spec:
+      priorityClassName: system-cluster-critical
+      automountServiceAccountToken: false
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: image-validation-webhook
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: webhook
+        image: ghcr.io/hlesey/image-validation-webhook:1.0
+        args:
+        - --listen=:8443
+        - --path=/image_policy
+        - --allowed-registries=ghcr.io/,registry.k8s.io/,quay.io/
+        ports:
+        - name: https
+          containerPort: 8443
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: https
+            scheme: HTTPS
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: 10m
+            memory: 16Mi
+          limits:
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-validation-webhook
+  namespace: image-policy
+spec:
+  clusterIP: 10.96.0.100   # static IP - the API server's kubeconf points at it
+  selector:
+    app: image-validation-webhook
+  ports:
+  - name: https
+    port: 443
+    targetPort: https
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: image-validation-webhook
+  namespace: image-policy
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: image-validation-webhook

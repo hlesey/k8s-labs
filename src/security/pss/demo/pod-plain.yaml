@@ -1,4 +1,3 @@
-# Demo (Pod Security Standards 3.2): no securityContext -> admitted by baseline, warnings for restricted
 apiVersion: v1
 kind: Pod
 metadata:

@@ -1,14 +1,13 @@
-# Demo (Runtime Security 2.2 and 3.3): an nginx Pod to inspect from its node
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ir-demo
+  name: lab-runtime-security
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: web
-  namespace: ir-demo
+  namespace: lab-runtime-security
 spec:
   containers:
   - name: web

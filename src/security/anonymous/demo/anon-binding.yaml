@@ -1,5 +1,3 @@
-# Demo (Cluster Hardening 1.3): the mistake - "view" for every unauthenticated client.
-# Apply, show the anonymous curl, then delete it right away.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:

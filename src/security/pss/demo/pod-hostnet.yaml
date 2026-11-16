@@ -1,4 +1,3 @@
-# Demo (Pod Security Standards 3.2): host network namespace -> rejected by baseline
 apiVersion: v1
 kind: Pod
 metadata:

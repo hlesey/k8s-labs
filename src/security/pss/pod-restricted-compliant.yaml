@@ -1,4 +1,3 @@
-# Slide: Pod Security Standards 2.1 - the slide omits seccompProfile, which restricted requires
 apiVersion: v1
 kind: Pod
 metadata:
