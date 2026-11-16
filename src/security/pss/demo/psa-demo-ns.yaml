@@ -1,4 +1,3 @@
-# Demo (Pod Security Standards 3.2): baseline enforced, restricted only warned
 apiVersion: v1
 kind: Namespace
 metadata:

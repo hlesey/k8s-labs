@@ -1,4 +1,3 @@
-# Demo (Cluster Hardening 5.5): the same Pod without a seccomp profile and with RuntimeDefault
 apiVersion: v1
 kind: Pod
 metadata:

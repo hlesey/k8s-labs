@@ -1,11 +1,3 @@
-# Lab: Admission Controllers, Part 1 - kube-apiserver static Pod with ImagePolicyWebhook enabled.
-# Copy over /etc/kubernetes/manifests/kube-apiserver.yaml on the master (back up the original first!).
-#
-# Based on the kubeadm manifest of the lab cluster (Kubernetes 1.36). Changes:
-#   LAB (1/3), (2/3), (3/3)  the ImagePolicyWebhook changes, marked below
-#   no --advertise-address, no probe "host:" and no kubeadm advertise-address annotation, so the
-#   same file works on every lab cluster: the API server uses the node's default interface IP,
-#   the probes use the Pod IP (the node IP, because of hostNetwork: true)
 apiVersion: v1
 kind: Pod
 metadata:

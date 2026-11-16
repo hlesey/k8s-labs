@@ -1,4 +1,3 @@
-# Slide: Cluster Hardening 2.3 - needs k8s-apparmor-example-deny-write loaded on the node
 apiVersion: v1
 kind: Pod
 metadata:

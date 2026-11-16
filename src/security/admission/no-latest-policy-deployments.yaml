@@ -1,5 +1,3 @@
-# Lab: Admission Controllers, Part 2 j) - lab-no-latest extended to Deployments.
-# Replaces no-latest-policy.yaml (same policy and Binding names).
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
 metadata:
@@ -17,9 +15,6 @@ spec:
       operations: ["CREATE", "UPDATE"]
       resources: ["deployments"]   # immediate error on kubectl create/apply/set image, not a FailedCreate event
   variables:
-  # A Pod has the containers in spec, a Deployment in spec.template.spec.
-  # Using object.spec.containers for a Deployment fails with "no such key: containers",
-  # and with failurePolicy: Fail every Deployment is rejected, even with a good image.
   - name: podSpec
     expression: "object.kind == 'Pod' ? object.spec : object.spec.template.spec"
   # initContainers too: otherwise an init container with :latest bypasses the policy

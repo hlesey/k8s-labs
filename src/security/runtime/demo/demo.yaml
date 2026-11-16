@@ -1,4 +1,3 @@
-# Demo (Runtime Security 2.2 and 3.3): an nginx Pod to inspect from its node
 apiVersion: v1
 kind: Namespace
 metadata:

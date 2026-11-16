@@ -1,4 +1,3 @@
-# Demo (Cluster Hardening 1.3): a namespace with one Pod, to be listed anonymously
 apiVersion: v1
 kind: Namespace
 metadata:
