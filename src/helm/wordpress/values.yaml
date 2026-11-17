@@ -1,5 +1,6 @@
-# use CluserIP service
-# enable Ingress
+# groundhog2k/wordpress (official docker.io/wordpress image; bitnami images are no longer published)
+# use ClusterIP service
+# enable HTTPRoute
 
 service:
   type: ClusterIP
@@ -11,3 +12,12 @@ httpRoute:
       namespace: envoy-gateway
   hostnames:
     - wordpress.clusterx.qedzone.ro
+
+# bundled MariaDB; sizes bind the PVs from pv.yaml
+storage:
+  requestedSize: 10Gi
+
+mariadb:
+  enabled: true
+  storage:
+    requestedSize: 8Gi
