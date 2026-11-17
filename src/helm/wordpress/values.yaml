@@ -19,5 +19,11 @@ storage:
 
 mariadb:
   enabled: true
+  settings:
+    rootPassword: labpass
+  userDatabase:
+    name: wordpress
+    user: wordpress
+    password: labpass
   storage:
     requestedSize: 8Gi
