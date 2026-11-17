@@ -1,5 +1,8 @@
-image:
-  registry: docker.io
-  repository: bitnami/mysql
-  # tag: 8.4.2-debian-12-r4
-  tag: 8.4.0-debian-12-r3
+# groundhog2k/mysql (official docker.io/mysql image; bitnami images are no longer published)
+settings:
+  rootPassword:
+    value: labpass
+
+# binds one of the PVs from pv.yaml
+storage:
+  requestedSize: 8Gi
