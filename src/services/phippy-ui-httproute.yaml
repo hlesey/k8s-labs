@@ -44,3 +44,17 @@ spec:
     backendRefs:
     - name: phippy-ui
       port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /static
+    backendRefs:
+    - name: phippy-ui
+      port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: phippy-ui
+      port: 80
