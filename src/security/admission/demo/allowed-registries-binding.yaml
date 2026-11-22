@@ -1,10 +1,9 @@
-# Demo (Admission Controllers 4.2): starts with Warn; the demo patches it to Deny
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
 metadata:
-  name: require-team-binding
+  name: allowed-registries-binding
 spec:
-  policyName: require-team
+  policyName: allowed-registries
   validationActions: [Warn]
   matchResources:
     namespaceSelector:

@@ -1,0 +1,17 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: allowed-registries
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+    - apiGroups: [""]
+      apiVersions: ["v1"]
+      operations: ["CREATE", "UPDATE"]
+      resources: ["pods"]
+  validations:
+  - expression: >-
+      object.spec.containers.all(c,
+        ['ghcr.io/', 'registry.k8s.io/', 'quay.io/'].exists(r, c.image.startsWith(r)))
+    message: "images must come from ghcr.io, registry.k8s.io or quay.io"
