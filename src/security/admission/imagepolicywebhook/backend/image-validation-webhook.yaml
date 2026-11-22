@@ -75,14 +75,3 @@ spec:
   - name: https
     port: 443
     targetPort: https
----
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: image-validation-webhook
-  namespace: image-policy
-spec:
-  minAvailable: 1
-  selector:
-    matchLabels:
-      app: image-validation-webhook

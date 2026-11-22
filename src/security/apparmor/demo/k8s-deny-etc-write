@@ -1,4 +1,3 @@
-# Demo (Cluster Hardening 5.3): AppArmor profile, copy to /etc/apparmor.d/ on node01
 #include <tunables/global>
 
 profile k8s-deny-etc-write flags=(attach_disconnected) {
